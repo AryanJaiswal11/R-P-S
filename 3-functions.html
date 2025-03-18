@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title>mini game</title>
+</head>
+<body>
+    <button onclick="fun('rock')">rock</button>
+    <button onclick="fun('paper')">paper</button>
+    <button onclick="fun('scissor')">scissor</button>
+
+    <div id="score"></div>
+    <div id="result"></div>
+    
+
+    <script>
+        let playerScore=0;
+        let computerScore=0;
+        const cpu = ['rock','paper','scissor'];
+        function fun(choice){
+            if(playerScore==2 || computerScore==2){
+                document.getElementById("result").innerText="Game Over, RELOAD PAGE";
+                return;
+            }
+
+            const num = Math.floor(Math.random() * 3);
+            let cpu_move = cpu[num];
+
+            //---------------------------------------------
+            if(choice=='rock' && cpu_move=='scissor'){
+                playerScore+=1;
+            }
+            else if(choice=='paper'&&cpu_move=='rock'){
+                playerScore+=1;
+            }
+            else if(choice=='scissor'&& cpu_move=='paper'){
+                playerScore+=1;
+            }
+            else if(choice==cpu_move){
+                
+            }
+            else{
+                computerScore+=1;
+            }
+            //------------------------------------------------
+
+            document.getElementById("score").innerText=`player score:${playerScore} | cpu score:${computerScore}`;
+            document.getElementById("result").innerText=`player chosses: ${choice}| cpu chosses: ${cpu_move}`;
+            
+
+            if (playerScore === 2 || computerScore === 2) {
+                document.getElementById("result").innerText += `\n🎉 ${playerScore === 2 ? "You Win the Match!" : "Computer Wins the Match!"}`;
+                return;
+            }
+        }
+        
+
+    </script>
+</body>
